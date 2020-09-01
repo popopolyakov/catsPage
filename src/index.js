@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+   google: {
+     families: ['Exo+2:ital,wght@1,250', 'sans-serif']
+   }
+});
+
 
 ReactDOM.render(
   <React.StrictMode>

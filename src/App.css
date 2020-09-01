@@ -1,38 +1,406 @@
+:root {
+  --default-color: #1698D9;
+  --select-color: #d91667;
+  --disable-color: #b3b3b3;
+  --default-text-color: #666666;
+  --select-text-color: #e62e7a;
+  --disable-text-color: #666666;
+}
+
+body {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 5e-05) 49.88%, rgba(0, 0, 0, 0.5) 100%) repeat, url(./background.png);
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+/* #root {
+
+} */
+
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleSection {
+  position: relative;
+  padding: 0px 12px;
+}
+
+.titleSection h1 {
+  text-shadow: 0px 1px 1px;
+  color: #ffffff;
+  font-family: "Exo 2.0";
+  font-size: 36px;
+  font-weight: 250;
+  line-height: 43px;
   text-align: center;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.productSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.product__descParagraph a {
+  color: #1698D9;
+  border-bottom: 1px dashed #1698D9;
+}
+
+.product__descParagraph a:hover {
+  font-weight: 650;
+  cursor: pointer
+}
+/* Компьютер */
+@media (min-width: 1201px) {
+  
+  .productSection {
+    width: 1200px
+  }
+  
+  .productSection .product {
+    margin-left: 80px;
+  }
+  
+  .productSection .product:first-child{
+    margin-left: 0px;
+  }
+
+  #root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Планшеты и горизонтальные смартфоны */
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  
+  .productSection {
+    width: 800px
+  }
+
+  .productSection .product {
+    margin-left: 80px;
+  }
+  
+  .productSection .product:first-child{
+    margin-left: 0px;
+  }
+
+  .productSection .product:last-child{
+    margin-top: 15px;
+    margin-left: 0px;
+  }
+  
+  .productSection .product:nth-child(2n) {
+    margin-right: 0px
+  }
+  
+}
+
+/* Вертикальные смартфоны */
+
+@media (max-width: 799px) {
+  
+  .productSection {
+    width: 320px
+  }
+  
+  .product {
+    margin-left: 0px;
+  }
+
+}
+
+.product__card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 320px;
+  margin-top: 15px;
+}
+
+.product__card_disable:after {
+  position: absolute;
+  top: 0;
+  opacity:0;
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  width:100%;
+  height: 100%;
+  background: rgba(242, 242, 242,.5);
+  transition: opacity .33s;
+  z-index: 30;
+  opacity: 1;
+  left:0;
+  border-radius: 60px 12px 12px 12px
+}
+
+.product__card:hover {
+  cursor: pointer;
+}
+
+.product__card__designBlock {
+  width: 41px;
+  overflow: hidden;
+}
+
+/* .product__card__designBlock__borderLeft {
+  box-sizing: border-box;
+  background: #F2F2F2;
+  border-right: 0px;
+  border-top: 0px;
+  box-sizing: border-box;
+  border-radius: 0px 0px 0px 12px;
+  height: 100%;
+}
+
+.product__card__designBlock__borderLeft_default {
+  border: 4px solid var(--default-color);
+}
+
+.product__card__designBlock__borderLeft_select {
+  border: solid 4px var(--select-color);
+}
+
+.product__card__designBlock__borderLeft_disable {
+  border: solid 4px var(--disable-color);
+} */
+
+.product__card__info {
+  background: #F2F2F2;
+  box-sizing: border-box;
+  border-radius: 0px 12px 12px 0px;
+  width: 320px;
+  z-index: 10;
+  padding-right: 12px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.product__card__info_default {
+  border: 4px solid var(--default-color);
+  border-left: 0px;
+}
+
+.product__card__info_select {
+  border: 4px solid var(--select-color);
+  border-left: 0px;
+}
+
+.product__card__info_disable {
+  border: solid 4px var(--disable-color);
+  border-left: 0px;
+}
+
+.product__card__footer {
+  display: flex;
+  width: calc(100% + 36px);
+  height: 271px;
+  position: relative;
+  overflow: hidden;
+  margin-left: -33px;
+  border-radius: 0px 0px 0px 8px;
+}
+
+.product__card__footer__weight {
+  height: auto;
+  margin: auto 0px 10px auto;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.product__card__footer__weight_default{
+  background-color: var(--default-color);
+}
+.product__card__footer__weight_select{
+  background-color: var(--select-color);
+}
+.product__card__footer__weight_disable{
+  background-color: var(--disable-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.product__card__footer__weight__quantity {
+  padding-top: 13px
+}
+
+.product__card__info__title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  margin-top: 5px
+}
+
+.product__card__info__subTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.product__card__info__upperQuote {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  padding-top: 15px;
+}
+
+.product__card__info__upperQuote_default {
+  color: var(--default-text-color);
+}
+
+.product__card__info__upperQuote_select {
+  color: var(--default-text-color);
+}
+
+.product__card__info__upperQuote_select_hover {
+  color: var(--select-text-color);
+}
+
+.product__card__info__upperQuote_disable {
+  color: var(--disable-text-color);
+}
+
+.product__card__info__description {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  padding-top: 15px;
+  height: 50px;
+  color: #666666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  box-orient: vertical;
+}
+
+.product__card__footer__weight__value {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  display: inline-block;
+}
+
+.product__card__footer__img {
+  position: absolute;
+  width: 368px;
+  height: auto;
+  margin-left: -30px;
+}
+
+.product__card__footer__img img {
+  height: 100%;
+  width: 100%;
+}
+
+.product__card__designBlock__hover {
+  height: 36px;
+  background: #F2F2F2;
+  transform: translateY(100%) skewY(-225deg);
+  transform-origin: left; 
+  width: 40px;
+  box-sizing: border-box;
+}
+
+.product__card__designBlock__hover:before {
+  height: 6px;
+  transform: translateY(-100%) skewX(45deg);
+  width: 40px;
+  box-sizing: border-box;
+  content: '';
+  position: fixed;
+  margin-top: 4px;
+}
+
+.product__card__designBlock__hover_default:before {
+  background: var(--default-color)
+}
+.product__card__designBlock__hover_select:before {
+  background: var(--select-color)
+}
+.product__card__designBlock__hover_disable:before {
+  background: var(--disable-color)
+}
+
+.product__card__designBlock__border {
+  position: relative;
+  background-color: #F2F2F2;
+  height: calc(100% - 36px);
+  box-sizing: border-box;
+  border-radius:  0px 0px 0px 12px;
+  z-index: 10;
+  content: '';
+}
+
+.product__card__designBlock__border_default {
+  border-left: 4px solid var(--default-color);
+  border-bottom: 4px solid var(--default-color);
+}
+
+.product__card__designBlock__border_select {
+  border-left: 4px solid var(--select-color);
+  border-bottom: 4px solid var(--select-color);
+}
+
+.product__card__designBlock__border_disable {
+  border-left: 4px solid var(--disable-color);
+  border-bottom: 4px solid var(--disable-color);
+}
+
+
+.product__descParagraph {
+  text-align: center;
+  width: 320px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
+  margin-top: 14px;
+}
+
+.product__card__descParagraph_default {
+  color: #ffffff;
+}
+
+.product__card__descParagraph_select {
+  color: #ffffff;
+}
+
+.product__card__descParagraph_disable {
+  color: #ffff66;
 }
